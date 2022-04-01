@@ -1,0 +1,28 @@
+<mat-card>
+    <mat-table [dataSource]="tasks" class="mat-elevation-z8">
+        <!-- Position Column -->
+        <ng-container matColumnDef="description">
+            <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="completed">
+            <mat-header-cell *matHeaderCellDef> Completed </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.completed}} </mat-cell>
+        </ng-container>
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowSelect(row)" [class.demo-row-is-clicked]="clickedRow.includes(row)"></mat-row>
+    </mat-table>
+
+    <mat-card-actions align="start">
+        <!-- <button mat-button>Like</button> -->
+        <span style="margin: 8px 10px 0 10px; " matTooltip="Please select a task to continue" matTooltipClass="example-tooltip-red" [matTooltipDisabled]="clickedRow.length>0" [matTooltipPosition]="'right'">
+            <button mat-raised-button color="primary" type="button" (click)="editTask()" [disabled]="clickedRow.length===0"> <mat-icon>edit</mat-icon> Edit</button>
+            <button mat-raised-button color="warn" type="button" (click)="deleteTask()" [disabled]="clickedRow.length===0"> <mat-icon>delete</mat-icon> Delete</button>
+        </span>
+        <button style="margin-left: 10px;" type="button" mat-raised-button color="warn" (click)="toCreateTask()"><mat-icon>add_circle</mat-icon>Create a Task</button>
+    </mat-card-actions>
+</mat-card>

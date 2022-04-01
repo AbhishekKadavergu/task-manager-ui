@@ -1,0 +1,27 @@
+<mat-card class="task-card">
+    <mat-card-title>Create Task</mat-card-title>
+
+    <form class="example-form" [formGroup]="formGroup" (ngSubmit)="onFormSubmit()" ngNativeValidate>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Task</mat-label>
+            <input matInput name="description" maxlength="256" placeholder="Ex. Plant a Tree..." formControlName="description">
+
+        </mat-form-field>
+
+        <mat-slide-toggle formControlName="completed">Completed</mat-slide-toggle>
+
+        <div class="action_buttons">
+            <div>
+                <button mat-raised-button color="primary" type="submit">Create</button>
+                <button mat-raised-button type="button" (click)="onResetClick()" style="margin-left: 10px;">Reset</button>
+
+            </div>
+            <div>
+
+                <button mat-raised-button type="button" color="accent" (click)="goToHome()">Back</button>
+            </div>
+        </div>
+
+    </form>
+
+</mat-card>

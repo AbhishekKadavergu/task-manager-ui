@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Delete this Task?</h1>
+<div mat-dialog-content>
+    <div>
+        <p> <strong> Task</strong> : {{data.description}} </p>
+        <p> <strong> Completed</strong> : {{data.completed}} </p>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="deleteTask()">Yes, delete it</button>
+    <button mat-raised-button (click)="onCancelClick()">Close</button>
+</div>
