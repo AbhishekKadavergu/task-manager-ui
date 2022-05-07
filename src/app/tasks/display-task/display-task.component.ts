@@ -13,10 +13,9 @@ import { UpdateTaskComponent } from '../update-task/update-task.component';
 })
 export class DisplayTaskComponent implements OnInit {
   tasks: Task[] = []
-  columns = [{ "header": "Description", "cell": "description" }, { "header": "Completed", "cell": "completed" }]
+  columns = [{ "header": "Description", "cell": "description" }, { "header": "Completed", "cell": "completed" }, { "header": "Edit", "cell": "edit" }, { "header": "Delete", "cell": "delete" }]
   displayedColumns = this.columns.map(c => c.cell);
-  // clickedRow = new Set()
-  clickedRow: any = []
+
 
 
   constructor(private taskSer: TaskService, private router: Router, public dialog: MatDialog) { }
@@ -40,16 +39,11 @@ export class DisplayTaskComponent implements OnInit {
     }
   }
 
-  onRowSelect(row: any) {
-    console.log(row)
-    this.clickedRow = []
-    this.clickedRow.push(row)
-  }
 
-  editTask() {
-    console.log(this.clickedRow?.[0])
+  editTask(data:any) {
+    console.log(data)
    const dialogRef = this.dialog.open(UpdateTaskComponent, {
-      data: this.clickedRow?.[0]
+      data: data
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');  
@@ -60,9 +54,9 @@ export class DisplayTaskComponent implements OnInit {
     });
   }
 
-  deleteTask(){
+  deleteTask(data:any){
     const dialogRef = this.dialog.open(DeleteTaskComponent, {
-      data: this.clickedRow?.[0]
+      data: data
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');  

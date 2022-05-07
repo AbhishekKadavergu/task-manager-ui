@@ -12,17 +12,26 @@
             <mat-cell *matCellDef="let element"> {{element.completed}} </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="edit">
+            <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+            <mat-cell *matCellDef="let element"> <button mat-icon-button color="primary" aria-label="Example icon button with a home icon" (click)="editTask(element)">
+                <mat-icon>edit</mat-icon>
+              </button> </mat-cell>
+        </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowSelect(row)" [class.demo-row-is-clicked]="clickedRow.includes(row)"></mat-row>
+        <ng-container matColumnDef="delete">
+            <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+            <mat-cell *matCellDef="let element"> <button mat-icon-button color="primary" aria-label="Example icon button with a home icon" (click)="deleteTask(element)">
+                <mat-icon>delete</mat-icon>
+              </button> </mat-cell>
+        </ng-container>
+
+
+        <mat-header-row *matHeaderRowDef=" displayedColumns "></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
     </mat-table>
 
-    <mat-card-actions align="start">
-        <!-- <button mat-button>Like</button> -->
-        <span style="margin: 8px 10px 0 10px; " matTooltip="Please select a task to continue" matTooltipClass="example-tooltip-red" [matTooltipDisabled]="clickedRow.length>0" [matTooltipPosition]="'right'">
-            <button mat-raised-button color="primary" type="button" (click)="editTask()" [disabled]="clickedRow.length===0"> <mat-icon>edit</mat-icon> Edit</button>
-            <button mat-raised-button color="warn" type="button" (click)="deleteTask()" [disabled]="clickedRow.length===0"> <mat-icon>delete</mat-icon> Delete</button>
-        </span>
-        <button style="margin-left: 10px;" type="button" mat-raised-button color="warn" (click)="toCreateTask()"><mat-icon>add_circle</mat-icon>Create a Task</button>
+    <mat-card-actions>
+        <button style="margin-left: 10px;" type="button" mat-raised-button color="warn" (click)="toCreateTask()"><mat-icon>add_circle</mat-icon> Create a Task</button>
     </mat-card-actions>
 </mat-card>

@@ -52,28 +52,10 @@ export class RegistrationComponent implements OnInit {
         duration: 7 * 1000
       });
       this.router.navigateByUrl('/login')
-
-
-
-
-      // store user details and jwt token in local storage to keep user logged in between page refreshes
-      // localStorage.setItem('currentUser', JSON.stringify(data['body']));
-      // const userData: User = {
-      //   token: "",
-      //   user: {
-      //     _id: "",
-      //     name: "",
-      //     age: 20,
-      //     email: ""
-      //   }
-      // }
-      // this.auth.currentUserSubject.next(userData);
-      // this.router.navigateByUrl('/home')
-
     } catch (error) {
       console.log("Error: ", error['error'])
       console.log("Error: ", error['status'])
-      this._snackBar.open('Invalid credentials!!', 'Close', {
+      this._snackBar.open(error['error']['_message'], 'Close', {
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
         duration: 5 * 1000
