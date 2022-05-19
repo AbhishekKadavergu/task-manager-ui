@@ -1,9 +1,26 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image: url("../../assets/images/note-taking.jpg");
+    /* background-image: url('../../assets/background-images/pexels-karolina-grabowska-5412326.jpg'); */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+main {
+    flex: 1;
+}
+
 mat-card {
     max-width: 400px;
     margin: 2em auto;
     text-align: center;
-  }
-  
-  mat-form-field {
+    background: rgba(255, 255, 255, 0.9);
+    color: rgba(0, 0, 0, 0.63);
+}
+
+mat-form-field {
     display: block;
-  }
+}

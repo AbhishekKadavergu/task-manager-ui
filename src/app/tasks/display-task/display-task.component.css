@@ -10,3 +10,8 @@ button:disabled {
 .example-tooltip-red {
     background: #b71c1c;
 }
+
+.spinner {
+    display: flex;
+    justify-content: center;
+}

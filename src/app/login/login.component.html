@@ -1,24 +1,28 @@
-<mat-card>
-    <mat-card-content>
-        <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
-            <h2>Log In</h2>
-            <mat-error *ngIf="!loginValid">
-                The username and password were not recognized
-            </mat-error>
-            <mat-form-field>
-                <input matInput placeholder="Email" [(ngModel)]="username" name="username" required>
-                <mat-error>
-                    Please provide a valid email address
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password" required>
-                <mat-error>
-                    Please provide a valid password
-                </mat-error>
-            </mat-form-field>
-            <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Login</button>
-        </form>
-        <p style="margin-top: 10px;">New user? Please click <a routerLink="/registration">here</a> to register!</p>
-    </mat-card-content>
-</mat-card>
+<div class="container">
+    <main>
+        <mat-card>
+            <mat-card-content>
+                <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+                    <h2>Log In</h2>
+                    <mat-error *ngIf="!loginValid">
+                        The username and password were not recognized
+                    </mat-error>
+                    <mat-form-field>
+                        <input matInput placeholder="Email" [(ngModel)]="username" name="username" required>
+                        <mat-error>
+                            Please provide a valid email address
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password" required>
+                        <mat-error>
+                            Please provide a valid password
+                        </mat-error>
+                    </mat-form-field>
+                    <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Login</button>
+                </form>
+                <p style="margin-top: 10px;">New user? Please click <a routerLink="/registration">here</a> to register!</p>
+            </mat-card-content>
+        </mat-card>
+    </main>
+</div>

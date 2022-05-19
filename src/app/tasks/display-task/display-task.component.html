@@ -1,5 +1,9 @@
 <mat-card>
-    <mat-table [dataSource]="tasks" class="mat-elevation-z8">
+    <div class="spinner">
+        <mat-spinner *ngIf="tasks.length==0"></mat-spinner>
+    </div>
+
+    <mat-table [dataSource]="tasks" class="mat-elevation-z8" *ngIf="tasks.length>0">
         <!-- Position Column -->
         <ng-container matColumnDef="description">
             <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
