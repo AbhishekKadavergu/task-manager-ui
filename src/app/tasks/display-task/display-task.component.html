@@ -1,39 +1,43 @@
 <mat-card>
     <div class="spinner">
-        <mat-spinner *ngIf="tasks.length==0"></mat-spinner>
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
     </div>
+    <div *ngIf="!userMessage;">
+        <mat-table [dataSource]="tasks" class="mat-elevation-z8" *ngIf="tasks.length>0">
+            <!-- Position Column -->
+            <ng-container matColumnDef="description">
+                <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+            </ng-container>
 
-    <mat-table [dataSource]="tasks" class="mat-elevation-z8" *ngIf="tasks.length>0">
-        <!-- Position Column -->
-        <ng-container matColumnDef="description">
-            <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
-        </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="completed">
+                <mat-header-cell *matHeaderCellDef> Completed </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.completed}} </mat-cell>
+            </ng-container>
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="completed">
-            <mat-header-cell *matHeaderCellDef> Completed </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.completed}} </mat-cell>
-        </ng-container>
+            <ng-container matColumnDef="edit">
+                <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+                <mat-cell *matCellDef="let element"> <button mat-icon-button color="primary" aria-label="Example icon button with a home icon" (click)="editTask(element)">
+                    <mat-icon>edit</mat-icon>
+                  </button> </mat-cell>
+            </ng-container>
 
-        <ng-container matColumnDef="edit">
-            <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
-            <mat-cell *matCellDef="let element"> <button mat-icon-button color="primary" aria-label="Example icon button with a home icon" (click)="editTask(element)">
-                <mat-icon>edit</mat-icon>
-              </button> </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="delete">
-            <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
-            <mat-cell *matCellDef="let element"> <button mat-icon-button color="primary" aria-label="Example icon button with a home icon" (click)="deleteTask(element)">
-                <mat-icon>delete</mat-icon>
-              </button> </mat-cell>
-        </ng-container>
+            <ng-container matColumnDef="delete">
+                <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+                <mat-cell *matCellDef="let element"> <button mat-icon-button color="primary" aria-label="Example icon button with a home icon" (click)="deleteTask(element)">
+                    <mat-icon>delete</mat-icon>
+                  </button> </mat-cell>
+            </ng-container>
 
 
-        <mat-header-row *matHeaderRowDef=" displayedColumns "></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
-    </mat-table>
+            <mat-header-row *matHeaderRowDef=" displayedColumns "></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+        </mat-table>
+    </div>
+    <div *ngIf="userMessage && !isLoading">
+        <p>No Tasks to display.</p>
+    </div>
 
     <mat-card-actions>
         <button style="margin-left: 10px;" type="button" mat-raised-button color="warn" (click)="toCreateTask()"><mat-icon>add_circle</mat-icon> Create a Task</button>

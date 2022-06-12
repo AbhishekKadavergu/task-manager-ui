@@ -24,3 +24,8 @@ mat-card {
 mat-form-field {
     display: block;
 }
+
+.spinner {
+    display: flex;
+    justify-content: center;
+}

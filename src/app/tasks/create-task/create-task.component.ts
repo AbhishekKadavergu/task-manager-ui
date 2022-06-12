@@ -45,6 +45,7 @@ export class CreateTaskComponent implements OnInit {
         verticalPosition: this.verticalPosition,
         duration: 5 * 1000
       });
+      this.onResetClick()
     } catch (error) {
       console.log("Error: ", error)
     }

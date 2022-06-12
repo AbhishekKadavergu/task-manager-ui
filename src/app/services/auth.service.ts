@@ -35,7 +35,7 @@ export class AuthService {
     const headers = { 'content-type': 'application/json' }
     const body = JSON.stringify({ email, password });
     console.log(body)
-    return this.http.post(this.loginURL, body, { 'headers': headers, observe: 'response' }).toPromise()
+    return this.http.post<any>(this.loginURL, body, { 'headers': headers, observe: 'response' }).toPromise()
     // return this.http.post(this.loginURL, {})
   }
 

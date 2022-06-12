@@ -13,6 +13,8 @@ import { UpdateTaskComponent } from '../update-task/update-task.component';
 })
 export class DisplayTaskComponent implements OnInit {
   tasks: Task[] = []
+  isLoading:boolean = false
+  userMessage:any = ''
   columns = [{ "header": "Description", "cell": "description" }, { "header": "Completed", "cell": "completed" }, { "header": "Edit", "cell": "edit" }, { "header": "Delete", "cell": "delete" }]
   displayedColumns = this.columns.map(c => c.cell);
 
@@ -25,6 +27,8 @@ export class DisplayTaskComponent implements OnInit {
   }
 
   async getUserTasks() {
+    this.userMessage = ''
+    this.isLoading = true
     try {
       const tasks = await this.taskSer.getUserTasks()
       if (!tasks) {
@@ -32,10 +36,11 @@ export class DisplayTaskComponent implements OnInit {
       }
       console.log(tasks)
       this.tasks = tasks.body
-
-    } catch (error) {
+    } catch (error:any) {
+      this.userMessage = error.error
       console.log("Error: ", error)
-
+    } finally{
+      this.isLoading = false
     }
   }
 

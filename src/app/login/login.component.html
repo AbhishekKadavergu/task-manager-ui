@@ -21,6 +21,9 @@
                     </mat-form-field>
                     <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Login</button>
                 </form>
+                <div class="spinner">
+                    <mat-spinner *ngIf="isLoading"></mat-spinner>
+                </div>
                 <p style="margin-top: 10px;">New user? Please click <a routerLink="/registration">here</a> to register!</p>
             </mat-card-content>
         </mat-card>

@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   public loginValid = true;
   public username: string = '';
   public password: string = '';
+  isLoading:boolean = false
 
   //snack-bar
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
   }
 
   async onSubmit() {
+    this.isLoading = true
     console.log(this.username)
     console.log(this.password)
     const userCredentails: UserLogin = {
@@ -59,11 +61,13 @@ export class LoginComponent implements OnInit {
                         }
                       }
                       this.auth.currentUserSubject.next(userData);
+                      this.isLoading = false
       this.router.navigateByUrl('/home')
 
-    } catch (error) {
+    } catch (error:any) {
       console.log("Error: ", error['error'])
       console.log("Error: ", error['status'])
+      this.isLoading = false
       this._snackBar.open('Invalid credentials!!', 'Close', {
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
